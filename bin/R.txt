@@ -1,4 +1,0 @@
-int id sdi_purchase_fragment 0x7f030001
-int id sdi_purchase_webview 0x7f030000
-int layout purchase_fragment 0x7f020000
-int layout sdi_purchase_activity 0x7f020001
