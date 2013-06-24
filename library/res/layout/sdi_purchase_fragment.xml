@@ -7,11 +7,4 @@
         android:id="@id/sdi__purchase_webview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
-
-    <ProgressBar
-        android:id="@android:id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
 </FrameLayout>

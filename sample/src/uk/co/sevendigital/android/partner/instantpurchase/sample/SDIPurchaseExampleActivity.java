@@ -1,5 +1,6 @@
 package uk.co.sevendigital.android.partner.instantpurchase.sample;
 
+import com.crashlytics.android.Crashlytics;
 import uk.co.sevendigital.android.partner.instantpurchase.SDIPurchaseFragmentActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 
 /**
  * The purpose of this activity is to test launching and interfacing with the 7digital application.
+ * 
  * @author juliusspencer
  */
 public class SDIPurchaseExampleActivity extends Activity implements View.OnClickListener {
@@ -19,7 +21,7 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 	// dialog
 	private static final int ERROR_DIALOG_ID = 1234;
 	private static final String EXTRA_ERROR_MESSAGE = "extra_error_message";
-	
+
 	// Change this to your partner code
 	public static final String PARTNER_CODE = "777";
 
@@ -31,9 +33,9 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 	private EditText mCountryCodeEditText;
 
 	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	@Override public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Crashlytics.start(this);
 		setContentView(R.layout.main_activity);
 
 		// Bind views
@@ -45,6 +47,13 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 		mBuyReleaseButton = (Button) findViewById(R.id.buy_release_button);
 
 		// attach listeners
+		findViewById(R.id.buy_album_btn).setOnClickListener(this);
+		findViewById(R.id.buy_track_btn).setOnClickListener(this);
+		findViewById(R.id.buy_specific_track_btn).setOnClickListener(this);
+		findViewById(R.id.buy_us_track_btn).setOnClickListener(this);
+		findViewById(R.id.buy_track_partner712_btn).setOnClickListener(this);
+		findViewById(R.id.free_track_btn).setOnClickListener(this);
+		
 		mBuyReleaseButton.setOnClickListener(this);
 		mBuyTrackButton.setOnClickListener(this);
 	}
@@ -52,37 +61,58 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 	@Override protected Dialog onCreateDialog(int id, Bundle args) {
 		if (id != ERROR_DIALOG_ID) return super.onCreateDialog(id, args);
 		String message = args.getString(EXTRA_ERROR_MESSAGE);
-		return new AlertDialog.Builder(this)
-			.setIcon(android.R.drawable.ic_dialog_alert)
-			.setPositiveButton(android.R.string.ok, null)
-			.setTitle(R.string.error)
-			.setMessage(message)
-			.create();
+		return new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(android.R.string.ok, null)
+				.setTitle(R.string.error).setMessage(message).create();
 	}
-	
+
 	@Override protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
 		super.onPrepareDialog(id, dialog, args);
-		if (!(dialog instanceof AlertDialog)) return; 
+		if (!(dialog instanceof AlertDialog)) return;
 		String message = args.getString(EXTRA_ERROR_MESSAGE);
-		
+
 		((AlertDialog) dialog).setMessage(message);
 	}
-	
+
 	@Override public void onClick(View v) {
 		try {
 			Long partnerId = getLongFromEditText(mAffiliateIdEdittext);
 			String countryCode = mCountryCodeEditText.getText().toString().trim();
 			switch (v.getId()) {
-				case R.id.buy_track_button: {
-					Long releaseId = getLongFromEditText(mReleaseIdEdittext);
-					Long trackId = getLongFromEditText(mTrackIdEdittext);
-					SDIPurchaseFragmentActivity.startActivity(this, releaseId, trackId, partnerId, countryCode);
-					break;
-				} case R.id.buy_release_button: {
-					Long releaseId = getLongFromEditText(mReleaseIdEdittext);
-					SDIPurchaseFragmentActivity.startActivity(this, releaseId, null, partnerId, countryCode);
-					break;
-				}
+			case R.id.buy_track_button: {
+				Long releaseId = getLongFromEditText(mReleaseIdEdittext);
+				Long trackId = getLongFromEditText(mTrackIdEdittext);
+				SDIPurchaseFragmentActivity.startActivity(this, releaseId, trackId, partnerId, countryCode);
+				break;
+			}
+			case R.id.buy_release_button: {
+				Long releaseId = getLongFromEditText(mReleaseIdEdittext);
+				SDIPurchaseFragmentActivity.startActivity(this, releaseId, null, partnerId, countryCode);
+				break;
+			}
+			case R.id.buy_album_btn: {
+				SDIPurchaseFragmentActivity.startActivity(this, (long) 1234, null, null, null);
+				break;
+			}
+			case R.id.buy_track_btn: {
+				SDIPurchaseFragmentActivity.startActivity(this, null, (long) 12345, null, null);
+				break;
+			}
+			case R.id.buy_specific_track_btn: {
+				SDIPurchaseFragmentActivity.startActivity(this, (long) 1302, (long) 12345, null, null);
+				break;
+			}
+			case R.id.buy_us_track_btn: {
+				SDIPurchaseFragmentActivity.startActivity(this, null, (long) 23243634, (long) 712, "US");
+				break;
+			}
+			case R.id.buy_track_partner712_btn: {
+				SDIPurchaseFragmentActivity.startActivity(this, null, (long) 12345, (long) 712, null);
+				break;
+			}
+			case R.id.free_track_btn: {
+				SDIPurchaseFragmentActivity.startActivity(this, null, (long) 8515447, null, null);
+				break;
+			}
 			}
 		} catch (IllegalArgumentException e) {
 			showDialog(ERROR_DIALOG_ID, buildErrorMessageBundle(e.getMessage()));
@@ -91,13 +121,14 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 
 	private Long getLongFromEditText(EditText edittext) {
 		if (TextUtils.isEmpty(edittext.getText())) return null;
-		try { return Long.parseLong(edittext.getText().toString()); }
-		catch (NumberFormatException e) { 
+		try {
+			return Long.parseLong(edittext.getText().toString());
+		} catch (NumberFormatException e) {
 			showDialog(ERROR_DIALOG_ID, buildErrorMessageBundle(e.getMessage()));
 			return null;
 		}
 	}
-	
+
 	private static Bundle buildErrorMessageBundle(String message) {
 		Bundle bundle = new Bundle();
 		bundle.putString(EXTRA_ERROR_MESSAGE, message);

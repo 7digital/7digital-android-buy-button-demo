@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.Window;
 
 /**
  * A purchase activity contains a SDIPurchaseFragment.
@@ -63,7 +64,9 @@ public class SDIPurchaseFragmentActivity extends FragmentActivity implements SDI
 
 	/** Called when the activity is first created. */
 	@SuppressLint("SetJavaScriptEnabled") @Override public void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.sdi_purchase_activity);
 
 		mPurchaseFragment = (SDIPurchaseFragment) getSupportFragmentManager().findFragmentById(R.id.sdi__purchase_fragment);
@@ -96,8 +99,12 @@ public class SDIPurchaseFragmentActivity extends FragmentActivity implements SDI
 
 	@Override public void onProgressChanged(int newProgress) {}
 
-	@Override public void onPageStartedLoading() {}
+	@Override public void onPageStartedLoading() {
+		setProgressBarIndeterminateVisibility(true);
+	}
 
-	@Override public void onPageFinishedLoading() {}
+	@Override public void onPageFinishedLoading() {
+		setProgressBarIndeterminateVisibility(false);
+	}
 
 }

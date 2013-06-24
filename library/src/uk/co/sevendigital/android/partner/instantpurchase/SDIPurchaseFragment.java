@@ -23,7 +23,6 @@ import android.widget.Toast;
 public class SDIPurchaseFragment extends Fragment {
 
 	private WebView mWebView;
-	private ProgressBar mProgressBar;
 	private boolean mViewsInitialised;
 	private SDIPurchaseListener mDownloadListener;
 
@@ -32,7 +31,6 @@ public class SDIPurchaseFragment extends Fragment {
 	 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.sdi_purchase_fragment, container, false);
-		mProgressBar = (ProgressBar) view.findViewById(android.R.id.progress);
 		mWebView = (WebView) view.findViewById(R.id.sdi__purchase_webview);
 
 		mWebView.getSettings().setJavaScriptEnabled(true);
@@ -65,13 +63,11 @@ public class SDIPurchaseFragment extends Fragment {
 			@Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				super.onPageStarted(view, url, favicon);
 				mDownloadListener.onPageStartedLoading();
-				mProgressBar.setVisibility(View.VISIBLE);
 			}
 
 			@Override public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
 				mDownloadListener.onPageFinishedLoading();
-				mProgressBar.setVisibility(View.GONE);
 			}
 			
 

@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name="uk.co.sevendigital.android.partner.instantpurchase.SDIPurchaseFragmentActivity" />
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="168450ee0dcf5c05b9e10a5d9e4d824d96e80cf4"/>
     </application>
 
 </manifest>
