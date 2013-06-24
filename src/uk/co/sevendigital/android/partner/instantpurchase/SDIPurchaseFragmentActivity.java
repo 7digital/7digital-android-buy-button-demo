@@ -66,14 +66,14 @@ public class SDIPurchaseFragmentActivity extends FragmentActivity implements SDI
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sdi_purchase_activity);
 
-		mPurchaseFragment = (SDIPurchaseFragment) getSupportFragmentManager().findFragmentById(R.id.sdi_purchase_fragment);
+		mPurchaseFragment = (SDIPurchaseFragment) getSupportFragmentManager().findFragmentById(R.id.sdi__purchase_fragment);
 
 	}
 
 	protected void onStart() {
 		super.onStart();
 		SDIPurchaseFragment purchaseFragment = (SDIPurchaseFragment) getSupportFragmentManager().findFragmentById(
-				R.id.sdi_purchase_fragment);
+				R.id.sdi__purchase_fragment);
 		purchaseFragment.startPurchase(getIntent().getExtras());
 
 	};

@@ -31,9 +31,9 @@ public class SDIPurchaseFragment extends Fragment {
 	 * on create view
 	 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.purchase_fragment, container, false);
+		View view = inflater.inflate(R.layout.sdi_purchase_fragment, container, false);
 		mProgressBar = (ProgressBar) view.findViewById(android.R.id.progress);
-		mWebView = (WebView) view.findViewById(R.id.sdi_purchase_webview);
+		mWebView = (WebView) view.findViewById(R.id.sdi__purchase_webview);
 
 		mWebView.getSettings().setJavaScriptEnabled(true);
 		mWebView.setWebChromeClient(new WebChromeClient() {

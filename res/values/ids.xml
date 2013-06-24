@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-     <item type="id" name="sdi_purchase_webview" />
-     <item type="id" name="sdi_purchase_fragment" />
+     <item type="id" name="sdi__purchase_webview" />
+     <item type="id" name="sdi__purchase_fragment" />
 </resources>
