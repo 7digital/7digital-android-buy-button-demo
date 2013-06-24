@@ -64,6 +64,7 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 		super.onPrepareDialog(id, dialog, args);
 		if (!(dialog instanceof AlertDialog)) return; 
 		String message = args.getString(EXTRA_ERROR_MESSAGE);
+		
 		((AlertDialog) dialog).setMessage(message);
 	}
 	
