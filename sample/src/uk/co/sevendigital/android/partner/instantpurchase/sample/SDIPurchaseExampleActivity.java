@@ -23,9 +23,8 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 	// Change this to your partner code
 	public static final String PARTNER_CODE = "777";
 
-	private EditText mReleaseIdEdittext;
 	private Button mBuyReleaseButton;
-	private EditText mTrackReleaseIdEdittext;
+	private EditText mReleaseIdEdittext;
 	private EditText mTrackIdEdittext;
 	private Button mBuyTrackButton;
 	private EditText mAffiliateIdEdittext;
@@ -38,8 +37,7 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 		setContentView(R.layout.main_activity);
 
 		// Bind views
-		mReleaseIdEdittext = (EditText) findViewById(R.id.release_id_edittext);
-		mTrackReleaseIdEdittext = (EditText) findViewById(R.id.track_release_id_edittext);
+		mReleaseIdEdittext = (EditText) findViewById(R.id.track_release_id_edittext);
 		mTrackIdEdittext = (EditText) findViewById(R.id.track_id_edittext);
 		mAffiliateIdEdittext = (EditText) findViewById(R.id.affiliate_id_edittext);
 		mCountryCodeEditText = (EditText) findViewById(R.id.country_code_edittext);
@@ -75,7 +73,7 @@ public class SDIPurchaseExampleActivity extends Activity implements View.OnClick
 			String countryCode = mCountryCodeEditText.getText().toString().trim();
 			switch (v.getId()) {
 				case R.id.buy_track_button: {
-					Long releaseId = getLongFromEditText(mTrackReleaseIdEdittext);
+					Long releaseId = getLongFromEditText(mReleaseIdEdittext);
 					Long trackId = getLongFromEditText(mTrackIdEdittext);
 					SDIPurchaseFragmentActivity.startActivity(this, releaseId, trackId, partnerId, countryCode);
 					break;

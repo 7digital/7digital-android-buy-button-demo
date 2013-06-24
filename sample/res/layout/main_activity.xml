@@ -9,90 +9,98 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-
-        <View
-            style="@style/Widget.Divider"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_margin="12dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Enter purchase details"
+            android:textColor="#222222" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip" >
-
-            <EditText
-                android:id="@+id/release_id_edittext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="12"
-                android:hint="Album ID" >
-
-                <requestFocus />
-            </EditText>
-
-            <Button
-                android:id="@+id/buy_release_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="Buy album" />
-        </LinearLayout>
-
-        <View
-            style="@style/Widget.Divider"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip">
+            android:layout_marginTop="12dp" >
 
             <EditText
                 android:id="@+id/track_release_id_edittext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
                 android:layout_weight="6"
-                android:hint="Album ID" />
+                android:fontFamily="sans-serif-light"
+                android:hint="Album ID"
+                android:textColor="#222222" />
 
             <EditText
                 android:id="@+id/track_id_edittext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
                 android:layout_weight="6"
-                android:hint="Track ID" />
+                android:fontFamily="sans-serif-light"
+                android:hint="Track ID"
+                android:textColor="#222222" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/affiliate_id_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:hint="Partner ID"
+                android:inputType="number"
+                android:textColor="#222222" />
+
+            <EditText
+                android:id="@+id/country_code_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:hint="Country code"
+                android:inputType="textCapCharacters"
+                android:textColor="#222222" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/buy_track_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:text="Buy track" />
+                android:fontFamily="sans-serif-light"
+                android:text="Buy track"
+                android:textColor="#222222" />
+
+            <Button
+                android:id="@+id/buy_release_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:fontFamily="sans-serif-light"
+                android:text="Buy album"
+                android:textColor="#222222" />
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/affiliate_id_edittext"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
-            android:hint="Partner ID"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/country_code_edittext"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
-            android:hint="Country code"
-            android:inputType="textCapCharacters" />
     </LinearLayout>
 
 </ScrollView>
