@@ -11,11 +11,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:icon="@drawable/icon"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="uk.co.sevendigital.android.partner.instantpurchase.sample.SDIPurchaseExampleActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:name="uk.co.sevendigital.android.partner.instantpurchase.sample.SDIPurchaseExampleActivity2"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +29,10 @@
             </intent-filter>
         </activity>
         <activity android:name="uk.co.sevendigital.android.partner.instantpurchase.SDIPurchaseFragmentActivity" />
-        <meta-data android:name="com.crashlytics.ApiKey" android:value="168450ee0dcf5c05b9e10a5d9e4d824d96e80cf4"/>
+
+        <meta-data
+            android:name="com.crashlytics.ApiKey"
+            android:value="168450ee0dcf5c05b9e10a5d9e4d824d96e80cf4" />
     </application>
 
 </manifest>

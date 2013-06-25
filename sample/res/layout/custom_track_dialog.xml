@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_16dp"
+            android:layout_marginTop="12dp" >
+
+            <EditText
+                android:id="@+id/track_release_id_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="6"
+                android:fontFamily="sans-serif-light"
+                android:hint="Album ID"
+                android:textColor="#222222" />
+
+            <EditText
+                android:id="@+id/track_id_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="6"
+                android:fontFamily="sans-serif-light"
+                android:hint="Track ID"
+                android:textColor="#222222" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_32dp"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/affiliate_id_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:hint="Partner ID"
+                android:inputType="number"
+                android:textColor="#222222" />
+
+            <EditText
+                android:id="@+id/country_code_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:hint="Country code"
+                android:inputType="textCapCharacters"
+                android:textColor="#222222" />
+        </LinearLayout>
+</LinearLayout>

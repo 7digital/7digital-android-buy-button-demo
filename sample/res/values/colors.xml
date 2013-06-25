@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="actionbar_grey">#222222</color>
+    <color name="red">#bf5c51</color>
+    <color name="button_blue">#4dabd1</color>
+    <color name="image_button_highlight">#ddeeeeee</color>
+    
+</resources>

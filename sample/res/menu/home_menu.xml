@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/buy_album_item"
+        android:title="Buy Album"/>
+    <item
+        android:id="@+id/buy_track_item"
+        android:title="Buy Track"/>
+    <item
+        android:id="@+id/buy_specific_track_item"
+        android:title="Buy Specific Track"/>
+    <item
+        android:id="@+id/buy_us_track_item"
+        android:title="Buy US Track"/>
+    <item
+        android:id="@+id/buy_track_partner_item"
+        android:title="Buy Track Partner712"/>
+    <item
+        android:id="@+id/free_track_item"
+        android:title="Free Track"/>
+    <item
+        android:id="@+id/custom_track_item"
+        android:title="Custom Track"/>
+
+</menu>

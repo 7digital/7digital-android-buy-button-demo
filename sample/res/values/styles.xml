@@ -1,19 +1,25 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="android:Theme" >
-        <item name="android:buttonStyle">@style/Widget.Button</item>
+    <style name="AppTheme" parent="android:Theme">
+        <item name="android:buttonStyle">@style/ButtonAppTheme</item>
+        <item name="android:actionBarStyle" tools:targetApi="11">@style/AppTheme.ActionBarStyle</item>
+        <item name="actionBarStyle">@style/AppTheme.ActionBarStyle</item>
     </style>
 
-    <style name="Widget" />
-    
-    <style name="Widget.Button" parent="@android:style/Widget.Button">
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    <style name="AppTheme.ActionBarStyle" parent="Widget.Sherlock.Light.ActionBar">
+        <item name="android:titleTextStyle" tools:targetApi="11">@style/ActionBar.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/ActionBar.TitleTextStyle</item>
     </style>
-    
-    <style name="Widget.Divider">
-        <item name="android:background">#4000</item>
-    </style> 
-    
+
+     <style name="ActionBar.TitleTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily" tools:targetApi="16">sans-serif-light</item>
+    </style>
+
+    <style name="ButtonAppTheme" parent="android:Widget.Button">
+        <item name="android:background">@drawable/btn_default_holo_light</item>
+        <item name="android:minHeight">32dip</item>
+        <item name="android:minWidth">64dip</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 </resources>

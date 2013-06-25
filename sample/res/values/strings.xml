@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">7digital Instant Purchase Sample</string>
+    <string name="app_name">PARTNER RADIO</string>
     <string name="release">View release</string>
     <string name="track">View track</string>
     <string name="artist">View artist</string>
@@ -17,4 +17,6 @@
     <string name="name">Name</string>
     
     <string name="error">Oops!</string>
+    
+    <string name="buy">BUY</string>
 </resources>
