@@ -11,7 +11,7 @@
         <item name="titleTextStyle">@style/ActionBar.TitleTextStyle</item>
     </style>
 
-     <style name="ActionBar.TitleTextStyle" parent="@android:style/TextAppearance">
+    <style name="ActionBar.TitleTextStyle" parent="@android:style/TextAppearance">
         <item name="android:fontFamily" tools:targetApi="16">sans-serif-light</item>
     </style>
 

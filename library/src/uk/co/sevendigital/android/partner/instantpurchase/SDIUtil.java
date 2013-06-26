@@ -42,44 +42,41 @@ public class SDIUtil {
 	}
 
 	public static boolean onDownloadRelease(Context context, Uri uri) {
-		//		
-		String releaseId = uri.getQueryParameter("releaseid");
-
-		boolean downloadHandled = downloadUri(context, uri);
-
+		Long releaseId = Long.parseLong(uri.getQueryParameter("releaseid"));
+		boolean downloadHandled = downloadUri(context, uri,releaseId);
 		return downloadHandled;
-
-		// http://media.geo.7digital.com/media/user/download/release?country=GB&formatid=48&oauth_consumer_key=7dpygdhr4x5k&oauth_nonce=762389418&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1370400385&oauth_token=f1bQPpFKAZyg4P0Q_a7BeA&oauth_version=1.0&releaseid=2177486&oauth_signature=y3eGpT31ZJ7QzRJIdxyb%2FVx48TA%3D
-		//		Toast.makeText(context, "Here an album with id " + releaseId + " be downloaded" , Toast.LENGTH_LONG).show();
 	}
 
 	protected static boolean onDownloadTrack(Context context, Uri uri) {
 		// http://media.geo.7digital.com/media/user/downloadtrack?country=GB&formatid=17&oauth_consumer_key=7dpygdhr4x5k&oauth_nonce=1411278395&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1370399177&oauth_token=ZD31y98a_spR_3Vvwhomsw&oauth_version=1.0&releaseid=769006&trackid=8515447&oauth_signature=J%2BAedHYR5fwGpBl5G3prgKWajck%3D
-		String releaseId = uri.getQueryParameter("releaseid");
-		String trackId = uri.getQueryParameter("trackid");
+		Long releaseId = Long.parseLong(uri.getQueryParameter("releaseid"));
+		Long trackId = Long.parseLong(uri.getQueryParameter("trackid"));
 
-		boolean downloadHandled = downloadUri(context, uri);
+		boolean downloadHandled = downloadUri(context, uri,releaseId,trackId);
 		return downloadHandled;
-		//		Toast.makeText(context, "Here a track with id " + trackId + " of album with id " + releaseId + " be downloaded" , Toast.LENGTH_LONG).show();
 	}
 
-	@SuppressLint("NewApi") private static boolean downloadUri(Context context, Uri uri) {
+	private static boolean downloadUri(Context context, Uri uri,Long releaseId) {
+		return downloadUri(context, uri, releaseId, null);
+	}
+	@SuppressLint("NewApi") private static boolean downloadUri(Context context, Uri uri,Long releaseId, Long trackId) {
 		/*
 		 * default behaviour is to start downloads with the 7Digital app
 		 */
-		Intent intent = context.getPackageManager().getLaunchIntentForPackage("uk.co.sevendigital.android");
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+		
+		Intent intent = new Intent(SDIConstants.INTENT_VIEW_AND_SYNC_DOWNLOADS);
+		
 		// Verify it resolves
 		PackageManager packageManager = context.getPackageManager();
-		List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+		List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 		boolean isIntentSafe = activities.size() > 0;
 
 		// Start an activity if it's safe
 		if (isIntentSafe) {
+			if (null!=releaseId)intent.putExtra(SDIConstants.INTENT_EXTRA_RELEASEID, releaseId);
+			if (null!=trackId)intent.putExtra(SDIConstants.INTENT_EXTRA_TRACKID, trackId);
 			context.startActivity(intent);
 		} else {
-
 			/*
 			 * If 7Digital is not installed, start download with the download manager.
 			 */

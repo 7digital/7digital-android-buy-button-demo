@@ -49,14 +49,8 @@ public class SDICustomTrackDialog extends SherlockDialogFragment {
 		builder.setView(view);
 		builder.setInverseBackgroundForced(true);
 		builder.setTitle("Enter purchase details");
-		builder.setPositiveButton("Buy Track", null);
-		builder.setNeutralButton("Buy Album", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton("Buy", null);
 
-			@Override public void onClick(DialogInterface dialog, int which) {
-				mListener.onBuyAlbum(SDICustomTrackDialog.this);
-
-			}
-		});
 		final AlertDialog adialog = builder.create();
 		adialog.setOnDismissListener(this);
 		adialog.setOnCancelListener(this);
@@ -64,11 +58,11 @@ public class SDICustomTrackDialog extends SherlockDialogFragment {
 		return builder.create();
 	}
 
-	public void onOkButtonClick() {
+	public void onTrackButtonClick() {
 		final String release = mReleaseEditText.getText().toString();
 		final String track = mTrackEditText.getText().toString();
 
-		if (TextUtils.isEmpty(release) || TextUtils.isEmpty(track)) {
+		if (TextUtils.isEmpty(release) && TextUtils.isEmpty(track)) {
 			mReleaseEditText.setError("Enter something");
 			return;
 		} else {
@@ -98,7 +92,7 @@ public class SDICustomTrackDialog extends SherlockDialogFragment {
 		Button okButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
 		okButton.setOnClickListener(new View.OnClickListener() {
 			@Override public void onClick(View v) {
-				onOkButtonClick();
+				onTrackButtonClick();
 
 			}
 		});

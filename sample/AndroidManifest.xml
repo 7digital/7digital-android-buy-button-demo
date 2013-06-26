@@ -17,11 +17,6 @@
         <activity
             android:name="uk.co.sevendigital.android.partner.instantpurchase.sample.SDIPurchaseExampleActivity"
             android:label="@string/app_name" >
-        </activity>
-        
-        <activity
-            android:name="uk.co.sevendigital.android.partner.instantpurchase.sample.SDIPurchaseExampleActivity2"
-            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
