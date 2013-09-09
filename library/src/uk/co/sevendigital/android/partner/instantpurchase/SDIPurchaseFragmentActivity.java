@@ -13,6 +13,13 @@ import android.view.KeyEvent;
 import android.view.Window;
 
 /**
+ * 
+ * This purchase activity is intended to be started when the user wishes to buy a track/release.
+ * This activity will then take the user through the purchase process (based on webviews and 7Digital store).
+ * 
+ * Once the process is complete, this activity will finish, returning the user to the previous app.
+ * 
+ * 
  * A purchase activity contains a SDIPurchaseFragment.
  * 
  * Can be used as is, or extended to add custom functionality.
@@ -105,6 +112,10 @@ public class SDIPurchaseFragmentActivity extends FragmentActivity implements SDI
 
 	@Override public void onPageFinishedLoading() {
 		setProgressBarIndeterminateVisibility(false);
+	}
+
+	@Override public void onFinishAndClose() {
+		finish();
 	}
 
 }

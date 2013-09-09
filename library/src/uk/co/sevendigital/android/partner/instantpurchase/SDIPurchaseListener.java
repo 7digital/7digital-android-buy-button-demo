@@ -24,5 +24,8 @@ public interface SDIPurchaseListener {
 	void onProgressChanged(int newProgress);
 	void onPageStartedLoading();
 	void onPageFinishedLoading();
+	
+	/** Called to request the purchase flow be terminated, i.e the activity finished.*/
+	void onFinishAndClose();
 
 }

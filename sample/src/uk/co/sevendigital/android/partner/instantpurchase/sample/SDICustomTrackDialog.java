@@ -3,17 +3,15 @@ package uk.co.sevendigital.android.partner.instantpurchase.sample;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
-
-public class SDICustomTrackDialog extends SherlockDialogFragment {
+public class SDICustomTrackDialog extends DialogFragment {
 	public static SDICustomTrackDialog newInstance() {
 		SDICustomTrackDialog f = new SDICustomTrackDialog();
 		return f;
@@ -44,7 +42,7 @@ public class SDICustomTrackDialog extends SherlockDialogFragment {
 		mPartnerEditText = (EditText) view.findViewById(R.id.affiliate_id_edittext);
 		mCountryEditText = (EditText) view.findViewById(R.id.country_code_edittext);
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(getSherlockActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setCancelable(false);
 		builder.setView(view);
 		builder.setInverseBackgroundForced(true);

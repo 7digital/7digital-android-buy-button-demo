@@ -1,24 +1,21 @@
 package uk.co.sevendigital.android.partner.instantpurchase;
 
-import uk.co.sevendigital.android.partner.instantpurchase.R;
 import uk.co.sevendigital.android.partner.instantpurchase.core.SDIConstants;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.ConsoleMessage;
-import android.webkit.JavascriptInterface;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 public class SDIPurchaseFragment extends Fragment {
 
@@ -34,13 +31,8 @@ public class SDIPurchaseFragment extends Fragment {
 		mWebView = (WebView) view.findViewById(R.id.sdi__purchase_webview);
 
 		mWebView.getSettings().setJavaScriptEnabled(true);
-		mWebView.setWebChromeClient(new WebChromeClient() {
-			@Override public void onProgressChanged(WebView view, int newProgress) {
-				super.onProgressChanged(view, newProgress);
-				mDownloadListener.onProgressChanged(newProgress);
-			}
-		});
-		
+		mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+
 		mWebView.setWebViewClient(new WebViewClient() {
 
 			@Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -55,9 +47,13 @@ public class SDIPurchaseFragment extends Fragment {
 				}
 				return false;
 			}
-			
+
 			@Override public void onLoadResource(WebView view, String url) {
 				super.onLoadResource(view, url);
+			}
+
+			@Override public void onFormResubmission(WebView view, Message dontResend, Message resend) {
+				super.onFormResubmission(view, dontResend, resend);
 			}
 
 			@Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -69,13 +65,51 @@ public class SDIPurchaseFragment extends Fragment {
 				super.onPageFinished(view, url);
 				mDownloadListener.onPageFinishedLoading();
 			}
-			
 
 		});
+
+		mWebView.setWebChromeClient(new WebChromeClient() {
+			@Override public void onProgressChanged(WebView view, int newProgress) {
+				super.onProgressChanged(view, newProgress);
+				mDownloadListener.onProgressChanged(newProgress);
+			}
+
+			@Override public boolean onJsBeforeUnload(WebView view, String url, String message, JsResult result) {
+				System.out.println("before unload " + message);
+				return super.onJsBeforeUnload(view, url, message, result);
+			}
+
+			@Override public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+				System.out.println("jsAlert " + message);
+				return super.onJsAlert(view, url, message, result);
+			}
+
+			@Override public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+				System.out.println("js prompt" + message);
+				return super.onJsPrompt(view, url, message, defaultValue, result);
+			}
+
+			@Override public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+				System.out.println("js confirm " + message);
+				return super.onJsConfirm(view, url, message, result);
+			}
+
+			@Override public boolean onJsTimeout() {
+				System.out.println("js timeout");
+				return super.onJsTimeout();
+			}
+
+			@Override public void onCloseWindow(WebView window) {
+				System.out.println("close window");
+				super.onCloseWindow(window);
+				mDownloadListener.onFinishAndClose();
+			}
+		});
+
 		return view;
 	}
 
-	@SuppressLint("SetJavaScriptEnabled") @Override public void onActivityCreated(Bundle savedInstanceState) {
+	@Override public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		super.setRetainInstance(true);
 
@@ -99,7 +133,8 @@ public class SDIPurchaseFragment extends Fragment {
 
 			//build the purchase url from the arguments
 			String url = SDIUtil.buildUrl(arguments);
-			mWebView.loadUrl(url);
+
+			startPurchaseInternal(url);
 		}
 	}
 
@@ -143,7 +178,12 @@ public class SDIPurchaseFragment extends Fragment {
 			Log.w(SDIConstants.TAG, "Purchase can't be started when fragment is not added!");
 			return;
 		}
-		mWebView.loadUrl(purchaseUrl);
+		/**
+		 * Wrap the url in some javascript that opens it in a new window, because the close button needs to call window.close(), to request
+		 * the window be closed.
+		 * For some reason this only sometimes works loading the url via loadUrl. The method below works consistently.
+		 */
+		mWebView.loadData("<html><head><script>window.open(\"" + purchaseUrl + "\")</script></head></html>", "text/html", "UTF-8");
 	}
 
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -164,6 +204,5 @@ public class SDIPurchaseFragment extends Fragment {
 	private void updateView() {
 		if (!isAdded() || !mViewsInitialised) return;
 	}
-	
 
 }
