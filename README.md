@@ -9,7 +9,7 @@ To make a purchase, the SDIPurchaseFragmentActivity needs to be started, with th
 
  - releaseId
  - trackId
- - partnerId
+ - partnerId 
  - countryCode
 
- The purchase activity will handle everything else, requesting the user to login, and purchase the song/release.
+The purchase activity will handle everything else, requesting the user to login, and purchase the song/release.
