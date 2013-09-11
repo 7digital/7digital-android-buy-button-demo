@@ -1,12 +1,7 @@
-##7Digital Instant Purchase Library
+##7digital Buy button Android example
 
-The 7Digital Instant Purchase Library is a library designed to be integrated by 3rd party apps.
-
-It enables tracks/releases to be purchased through the 7Digital store, and downloaded, or the download handled by the 3rd party app.
-
-It's desdigned in a way that can be extended by the 3rd party app, or there is a purchase activity that can be used as is.
-
-
+This is an example of how the 7digital Buy button can be added to an Android app.
+The 7digital Buy button enables users to purchase a track/release without leaving your app.
 
 ###Usage
  
