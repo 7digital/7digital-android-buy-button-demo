@@ -6,7 +6,6 @@ import uk.co.sevendigital.android.partner.instantpurchase.core.SDIConstants;
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;

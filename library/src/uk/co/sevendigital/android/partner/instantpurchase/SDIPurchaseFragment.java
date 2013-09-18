@@ -5,14 +5,11 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -26,7 +23,7 @@ public class SDIPurchaseFragment extends Fragment {
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	 * on create view
 	 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-	@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	@SuppressLint("SetJavaScriptEnabled") @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.sdi_purchase_fragment, container, false);
 		mWebView = (WebView) view.findViewById(R.id.sdi__purchase_webview);
 
@@ -48,14 +45,6 @@ public class SDIPurchaseFragment extends Fragment {
 				return false;
 			}
 
-			@Override public void onLoadResource(WebView view, String url) {
-				super.onLoadResource(view, url);
-			}
-
-			@Override public void onFormResubmission(WebView view, Message dontResend, Message resend) {
-				super.onFormResubmission(view, dontResend, resend);
-			}
-
 			@Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				super.onPageStarted(view, url, favicon);
 				mDownloadListener.onPageStartedLoading();
@@ -74,33 +63,7 @@ public class SDIPurchaseFragment extends Fragment {
 				mDownloadListener.onProgressChanged(newProgress);
 			}
 
-			@Override public boolean onJsBeforeUnload(WebView view, String url, String message, JsResult result) {
-				System.out.println("before unload " + message);
-				return super.onJsBeforeUnload(view, url, message, result);
-			}
-
-			@Override public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-				System.out.println("jsAlert " + message);
-				return super.onJsAlert(view, url, message, result);
-			}
-
-			@Override public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
-				System.out.println("js prompt" + message);
-				return super.onJsPrompt(view, url, message, defaultValue, result);
-			}
-
-			@Override public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
-				System.out.println("js confirm " + message);
-				return super.onJsConfirm(view, url, message, result);
-			}
-
-			@Override public boolean onJsTimeout() {
-				System.out.println("js timeout");
-				return super.onJsTimeout();
-			}
-
 			@Override public void onCloseWindow(WebView window) {
-				System.out.println("close window");
 				super.onCloseWindow(window);
 				mDownloadListener.onFinishAndClose();
 			}

@@ -1,6 +1,5 @@
 package uk.co.sevendigital.android.partner.instantpurchase;
 
-import uk.co.sevendigital.android.partner.instantpurchase.R;
 import uk.co.sevendigital.android.partner.instantpurchase.core.SDIConstants;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -29,8 +28,9 @@ import android.view.Window;
  * 
  * 
  */
-public class SDIPurchaseFragmentActivity extends FragmentActivity implements SDIPurchaseListener {
 
+public class SDIPurchaseFragmentActivity extends FragmentActivity implements SDIPurchaseListener {
+	
 	private SDIPurchaseFragment mPurchaseFragment;
 
 	/**
@@ -115,6 +115,7 @@ public class SDIPurchaseFragmentActivity extends FragmentActivity implements SDI
 	}
 
 	@Override public void onFinishAndClose() {
+		setResult(RESULT_OK);
 		finish();
 	}
 

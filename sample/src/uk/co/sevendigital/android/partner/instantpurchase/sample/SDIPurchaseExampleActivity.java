@@ -11,11 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.SeekBar;
-import android.widget.TextView;
-
-import com.crashlytics.android.Crashlytics;
 
 /**
  * The purpose of this activity is to test launching and interfacing with the 7digital application.
@@ -23,29 +19,16 @@ import com.crashlytics.android.Crashlytics;
  */
 public class SDIPurchaseExampleActivity extends FragmentActivity implements TrackDialogFragmentListener {
 
-	private ImageButton mFavouriteButton;
-	private ImageButton mShareButton;
 	private Button mBuyButton;
-	private ImageButton mPauseButton;
-	private TextView mTitleTextview;
-	private TextView mArtistTextview;
-	private ImageButton mNextButton;
 	private SeekBar mSeekBar;
 	
 	
 	/** Called when the activity is first created. */
 	@Override public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (!BuildConfig.DEBUG) Crashlytics.start(this);
-		setContentView(R.layout.main_activity2);
+		setContentView(R.layout.example_activity);
 
-		mFavouriteButton = (ImageButton) findViewById(R.id.favourite_button);
-		mShareButton = (ImageButton) findViewById(R.id.share_button);
 		mBuyButton = (Button) findViewById(R.id.buy_button);
-		mPauseButton = (ImageButton) findViewById(R.id.pause_button);
-		mTitleTextview = (TextView) findViewById(R.id.title_textview);
-		mArtistTextview = (TextView) findViewById(R.id.artist_textview);
-		mNextButton = (ImageButton) findViewById(R.id.next_button);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar);
 
 		mBuyButton.setOnClickListener(new OnClickListener() {

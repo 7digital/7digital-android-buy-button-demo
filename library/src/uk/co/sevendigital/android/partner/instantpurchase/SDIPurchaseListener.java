@@ -21,8 +21,20 @@ public interface SDIPurchaseListener {
 	 */
 	boolean onDownloadRelease(Uri uri);
 
+	/**
+	 * Called when the webview loading progress of the SDIPurchaseFragment changes
+	 * @param newProgress
+	 */
 	void onProgressChanged(int newProgress);
+	/**
+	 * Called when the SDIPurchaseFragment webview starts loading a page.
+	 * Can be used to display a progress spinner etc
+	 */
 	void onPageStartedLoading();
+	/**
+	 * Called when the SDIPurchaseFragment webview finishes loading a page
+	 * Can be used to remove a progress spinner.
+	 */
 	void onPageFinishedLoading();
 	
 	/** Called to request the purchase flow be terminated, i.e the activity finished.*/
