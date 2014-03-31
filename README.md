@@ -1,4 +1,4 @@
-##7digital Buy button Android example
+##7digital Buy Button Android Example
 
 This is an example of how the 7digital Buy button can be added to an Android app.
 The 7digital Buy button enables users to purchase a track/release without leaving your app.
